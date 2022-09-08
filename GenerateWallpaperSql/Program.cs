@@ -78,6 +78,12 @@ await Parallel.ForEachAsync(files, async (file, _) =>
 
 });
 
+
+for (int i = 0; i < 5; i++)
+{
+    sqls = sqls.OrderBy(x => Random.Shared.Next()).ToList();
+}
+
 File.WriteAllLines("sql.sql", sqls);
 
 foreach (var item in error)
