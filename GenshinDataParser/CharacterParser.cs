@@ -468,8 +468,8 @@ internal static class CharacterParser
         var outfits = new List<CharacterOutfit>();
         foreach (var node in node_outfit as JsonArray)
         {
-            var id = ((int)node["EEFPIKPJIBC"]);
-            var avatarId = ((int)node["MJIEAHCHGFC"]);
+            var id = ((int)node["OGKFGGNLLDG"]);
+            var avatarId = ((int)node["AKOANLMAFDD"]);
             var nameTextMapHash = ((long)node["nameTextMapHash"]);
             var descTextMapHash = ((long)node["descTextMapHash"]);
             var isDefault = ((bool)(node["isDefault"] ?? false));
@@ -483,10 +483,10 @@ internal static class CharacterParser
             };
             if (!isDefault)
             {
-                outfit.FaceIcon = $"https://file.xunkong.cc/genshin/character/{node["AEKONDDFAHF"]}.png";
-                outfit.Card = $"https://file.xunkong.cc/genshin/character/{node["AEKONDDFAHF"]}_Card.png";
+                outfit.FaceIcon = $"https://file.xunkong.cc/genshin/character/{node["IFIODPDADEI"]}.png";
+                outfit.Card = $"https://file.xunkong.cc/genshin/character/{node["IFIODPDADEI"]}_Card.png";
                 outfit.SideIcon = $"https://file.xunkong.cc/genshin/character/{node["sideIconName"]}.png";
-                outfit.GachaSplash = $"https://file.xunkong.cc/genshin/character/{node["AEKONDDFAHF"].ToString().Replace("AvatarIcon", "Costume")}.png";
+                outfit.GachaSplash = $"https://file.xunkong.cc/genshin/character/{node["IFIODPDADEI"].ToString().Replace("AvatarIcon", "Costume")}.png";
             }
             outfits.Add(outfit);
         }
@@ -633,7 +633,7 @@ internal static class CharacterParser
         {
             var node = JsonNode.Parse(await File.ReadAllTextAsync(file));
             var name = node["name"].ToString();
-            var cha = await db.Set<CharacterInfo>().AsNoTracking().Where(x => x.Name == name).FirstOrDefaultAsync();
+            var cha = await db.Set<CharacterInfo>().Where(x => x.Name == name).FirstOrDefaultAsync();
             if (cha is null)
             {
                 Console.WriteLine($"{name} not found.");
@@ -647,8 +647,8 @@ internal static class CharacterParser
                 item.Korean = node["kr"][item.Title]?.ToString();
             }
             db.Update(cha);
+            await db.SaveChangesAsync();
         }
-        await db.SaveChangesAsync();
     }
 
 

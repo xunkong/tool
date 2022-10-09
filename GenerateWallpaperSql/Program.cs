@@ -7,8 +7,9 @@ using Windows.Graphics.Imaging;
 var files = Directory.GetFiles("images");
 Directory.CreateDirectory("todo/height");
 Directory.CreateDirectory("todo/width");
-
 bool needSuperResolution = false;
+
+
 foreach (var file in files)
 {
     using var fs = File.OpenRead(file);

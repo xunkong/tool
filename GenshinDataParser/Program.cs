@@ -46,7 +46,7 @@ using var db = new XunkongDbContext();
 //}
 //{
 //    // 84517 未实装, goal id = 22 需要设置为达成后不显示进度
-//    var reIds = db.Set<AchievementItemModel>().FromSqlRaw("SELECT * FROM info_achievement_item WHERE Enable;").Select(x => x.Id).ToList();
+//    var reIds = db.Set<AchievementItemModel>().Select(x => x.Id).ToList();
 //    var inserts = AchievementParser.AchievementItemModels.ExceptBy(reIds, x => x.Id).ToList();
 //    var updates = AchievementParser.AchievementItemModels.IntersectBy(reIds, x => x.Id).ToList();
 //    db.AddRange(inserts);
@@ -54,14 +54,14 @@ using var db = new XunkongDbContext();
 //    db.SaveChanges();
 //}
 
-//{
+{
 
-//    await CharacterParser.Run();
-//    var ids = db.Set<CharacterInfo>().AsNoTracking().Select(x => x.Id).ToList();
-//    db.AddRange(CharacterParser.Result.ExceptBy(ids, x => x.Id));
-//    db.UpdateRange(CharacterParser.Result.IntersectBy(ids, x => x.Id));
-//    db.SaveChanges();
-//}
+    await CharacterParser.Run();
+    var ids = db.Set<CharacterInfo>().AsNoTracking().Select(x => x.Id).ToList();
+    db.AddRange(CharacterParser.Result.ExceptBy(ids, x => x.Id));
+    db.UpdateRange(CharacterParser.Result.IntersectBy(ids, x => x.Id));
+    db.SaveChanges();
+}
 
 
 
@@ -74,7 +74,7 @@ using var db = new XunkongDbContext();
 }
 
 
-//await CharacterParser.GetVoice();
+await CharacterParser.GetVoice();
 
 
 Console.WriteLine();
