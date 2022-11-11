@@ -45,33 +45,41 @@ using var db = new XunkongDbContext();
 //    db.SaveChanges();
 //}
 //{
-//    // 84517 未实装, goal id = 22 需要设置为达成后不显示进度
+//    // 84517 未实装， 81219 重复, goal id = 22 需要设置为达成后不显示进度
 //    var reIds = db.Set<AchievementItemModel>().Select(x => x.Id).ToList();
 //    var inserts = AchievementParser.AchievementItemModels.ExceptBy(reIds, x => x.Id).ToList();
 //    var updates = AchievementParser.AchievementItemModels.IntersectBy(reIds, x => x.Id).ToList();
+//    foreach (var item in AchievementParser.AchievementItemModels.Where(x => x.GoalId == 22))
+//    {
+//        item.IsDeleteWatcherAfterFinish = true;
+//    }
+//    foreach (var item in inserts)
+//    {
+//        item.Version = "3.2";
+//    }
 //    db.AddRange(inserts);
 //    db.UpdateRange(updates);
 //    db.SaveChanges();
 //}
 
-{
+//{
 
-    await CharacterParser.Run();
-    var ids = db.Set<CharacterInfo>().AsNoTracking().Select(x => x.Id).ToList();
-    db.AddRange(CharacterParser.Result.ExceptBy(ids, x => x.Id));
-    db.UpdateRange(CharacterParser.Result.IntersectBy(ids, x => x.Id));
-    db.SaveChanges();
-}
+//    await CharacterParser.Run();
+//    var ids = db.Set<CharacterInfo>().AsNoTracking().Select(x => x.Id).ToList();
+//    db.AddRange(CharacterParser.Result.ExceptBy(ids, x => x.Id));
+//    db.UpdateRange(CharacterParser.Result.IntersectBy(ids, x => x.Id));
+//    db.SaveChanges();
+//}
 
 
 
-{
-    await WeaponParser.Run();
-    var ids = db.Set<WeaponInfo>().AsNoTracking().Select(x => x.Id).ToList();
-    db.AddRange(WeaponParser.weaponInfos.ExceptBy(ids, x => x.Id));
-    db.UpdateRange(WeaponParser.weaponInfos.IntersectBy(ids, x => x.Id));
-    db.SaveChanges();
-}
+//{
+//    await WeaponParser.Run();
+//    var ids = db.Set<WeaponInfo>().AsNoTracking().Select(x => x.Id).ToList();
+//    db.AddRange(WeaponParser.weaponInfos.ExceptBy(ids, x => x.Id));
+//    db.UpdateRange(WeaponParser.weaponInfos.IntersectBy(ids, x => x.Id));
+//    db.SaveChanges();
+//}
 
 
 await CharacterParser.GetVoice();

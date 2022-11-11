@@ -468,8 +468,8 @@ internal static class CharacterParser
         var outfits = new List<CharacterOutfit>();
         foreach (var node in node_outfit as JsonArray)
         {
-            var id = ((int)node["OGKFGGNLLDG"]);
-            var avatarId = ((int)node["AKOANLMAFDD"]);
+            var id = ((int)node["HPECGIGEJKG"]);
+            var avatarId = ((int)node["POLBJDFCJMD"]);
             var nameTextMapHash = ((long)node["nameTextMapHash"]);
             var descTextMapHash = ((long)node["descTextMapHash"]);
             var isDefault = ((bool)(node["isDefault"] ?? false));
@@ -483,10 +483,10 @@ internal static class CharacterParser
             };
             if (!isDefault)
             {
-                outfit.FaceIcon = $"https://file.xunkong.cc/genshin/character/{node["IFIODPDADEI"]}.png";
-                outfit.Card = $"https://file.xunkong.cc/genshin/character/{node["IFIODPDADEI"]}_Card.png";
+                outfit.FaceIcon = $"https://file.xunkong.cc/genshin/character/{node["GAKJDLMBFHJ"]}.png";
+                outfit.Card = $"https://file.xunkong.cc/genshin/character/{node["GAKJDLMBFHJ"]}_Card.png";
                 outfit.SideIcon = $"https://file.xunkong.cc/genshin/character/{node["sideIconName"]}.png";
-                outfit.GachaSplash = $"https://file.xunkong.cc/genshin/character/{node["IFIODPDADEI"].ToString().Replace("AvatarIcon", "Costume")}.png";
+                outfit.GachaSplash = $"https://file.xunkong.cc/genshin/character/{node["GAKJDLMBFHJ"].ToString().Replace("AvatarIcon", "Costume")}.png";
             }
             outfits.Add(outfit);
         }
