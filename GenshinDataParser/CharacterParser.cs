@@ -63,6 +63,23 @@ internal static class CharacterParser
         var node_talents = JsonNode.Parse(str_talent) as JsonArray;
 
 
+        var json_5 = node_avatarExcel.FirstOrDefault(x => ((int)x["id"]) == 10000005).ToJsonString();
+        var json_7 = node_avatarExcel.FirstOrDefault(x => ((int)x["id"]) == 10000007).ToJsonString();
+        foreach (var item in new (int Id, int Dept)[] { (30000001, 502), (30000003, 503), (30000005, 504), (30000007, 507), (30000009, 508), (30000011, 505), (30000013, 506) })
+        {
+            var node_1 = JsonNode.Parse(json_5);
+            node_1["id"] = item.Id;
+            node_1["skillDepotId"] = item.Dept;
+            node_avatarExcel.Add(node_1);
+        }
+        foreach (var item in new (int Id, int Dept)[] { (30000002, 502), (30000004, 503), (30000006, 504), (30000008, 507), (30000010, 508), (30000012, 505), (30000014, 506) })
+        {
+            var node_1 = JsonNode.Parse(json_7);
+            node_1["id"] = item.Id;
+            node_1["skillDepotId"] = item.Dept;
+            node_avatarExcel.Add(node_1);
+        }
+
 
         // 基础信息
         foreach (var node in node_avatarExcel as JsonArray)
@@ -468,8 +485,8 @@ internal static class CharacterParser
         var outfits = new List<CharacterOutfit>();
         foreach (var node in node_outfit as JsonArray)
         {
-            var id = ((int)node["HPECGIGEJKG"]);
-            var avatarId = ((int)node["POLBJDFCJMD"]);
+            var id = ((int)node["GIGOGHBMCND"]);
+            var avatarId = ((int)node["OOJDBLPMLDD"]);
             var nameTextMapHash = ((long)node["nameTextMapHash"]);
             var descTextMapHash = ((long)node["descTextMapHash"]);
             var isDefault = ((bool)(node["isDefault"] ?? false));
@@ -483,10 +500,10 @@ internal static class CharacterParser
             };
             if (!isDefault)
             {
-                outfit.FaceIcon = $"https://file.xunkong.cc/genshin/character/{node["GAKJDLMBFHJ"]}.png";
-                outfit.Card = $"https://file.xunkong.cc/genshin/character/{node["GAKJDLMBFHJ"]}_Card.png";
+                outfit.FaceIcon = $"https://file.xunkong.cc/genshin/character/{node["PKPHLKMPHAH"]}.png";
+                outfit.Card = $"https://file.xunkong.cc/genshin/character/{node["PKPHLKMPHAH"]}_Card.png";
                 outfit.SideIcon = $"https://file.xunkong.cc/genshin/character/{node["sideIconName"]}.png";
-                outfit.GachaSplash = $"https://file.xunkong.cc/genshin/character/{node["GAKJDLMBFHJ"].ToString().Replace("AvatarIcon", "Costume")}.png";
+                outfit.GachaSplash = $"https://file.xunkong.cc/genshin/character/{node["PKPHLKMPHAH"].ToString().Replace("AvatarIcon", "Costume")}.png";
             }
             outfits.Add(outfit);
         }
@@ -536,6 +553,12 @@ internal static class CharacterParser
                 item.Name = "无法参与料理";
             }
         }
+
+        var op = new JsonSerializerOptions { WriteIndented = true, Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping };
+
+        var s1 = JsonSerializer.Serialize(characterTalentInfoModels, op);
+        var s2 = JsonSerializer.Serialize(characterConstellationInfoModels, op);
+        var s3 = JsonSerializer.Serialize(characterPromotions, op);
 
         var nameCards = dapper.Query<NameCard>($"SELECT Id, Name, Description, Icon, ItemType, MaterialType, TypeDescription, RankLevel, StackLimit, `Rank`, GalleryBackground, ProfileImage FROM info_material WHERE MaterialType='{MaterialType.NameCard}';").ToDictionary(x => x.Id);
         foreach (var item in characterInfos)

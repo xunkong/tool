@@ -24,6 +24,7 @@ internal class XunkongDbContext : DbContext
         modelBuilder.Entity<AchievementGoalModel>().Property(x => x.RewardNameCard).HasConversion(obj => JsonSerializer.Serialize(obj, _options), str => JsonSerializer.Deserialize<NameCard>(str, _options));
 
         modelBuilder.Entity<AchievementItemModel>().Ignore(x => x.IsShow);
+        modelBuilder.Entity<AchievementItemModel>().Ignore(x => x.Version);
         modelBuilder.Entity<AchievementItemModel>().ToTable("Info_Achievement_Item");
         modelBuilder.Entity<AchievementItemModel>().Property(x => x.TriggerConfig).HasConversion(obj => JsonSerializer.Serialize(obj, _options), str => JsonSerializer.Deserialize<TriggerConfig>(str, _options));
 

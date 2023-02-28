@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 
-var path = @"C:\Genshin\raw_3.2";
-var oPath = @"C:\Genshin\genshin_3.2\";
+var path = @"C:\Genshin\origin_3.5";
+var oPath = @"C:\Genshin\genshin_3.5\";
 var files = new DirectoryInfo(path).GetFiles("*Texture2D*");
 
 CopyFiles(files, "Achievement", oPath + @"achievement\");

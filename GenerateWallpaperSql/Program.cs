@@ -4,6 +4,8 @@ using Windows.Graphics.Imaging;
 
 // 壁纸功能 sql 生成器
 
+Environment.CurrentDirectory=AppContext.BaseDirectory;
+
 var files = Directory.GetFiles("images");
 Directory.CreateDirectory("todo/height");
 Directory.CreateDirectory("todo/width");
