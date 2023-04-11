@@ -43,6 +43,7 @@ int count = 0;
 var error = new List<string>();
 
 var client = new PixivClient("127.0.0.1:10809");
+client.HttpClient.DefaultRequestHeaders.Add("Accept-Language", "zh-CN");
 
 await Parallel.ForEachAsync(files, async (file, _) =>
 {
