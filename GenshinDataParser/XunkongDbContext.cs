@@ -2,7 +2,6 @@
 using Xunkong.GenshinData.Achievement;
 using Xunkong.GenshinData.Character;
 using Xunkong.GenshinData.Material;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Xunkong.GenshinData.Weapon;
 
 namespace GenshinDataParser;

@@ -4,8 +4,6 @@ global using System.Text.Json.Nodes;
 global using Xunkong.GenshinData;
 using GenshinDataParser;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics;
-using Xunkong.GenshinData.Achievement;
 using Xunkong.GenshinData.Character;
 using Xunkong.GenshinData.Weapon;
 

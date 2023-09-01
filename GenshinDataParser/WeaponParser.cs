@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Xunkong.Core;
-using Xunkong.GenshinData.Character;
+﻿using Xunkong.Core;
 using Xunkong.GenshinData.Material;
 using Xunkong.GenshinData.Weapon;
 
