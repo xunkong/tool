@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 
-var path = @"C:\test\b\";
-var oPath = @"C:\test\c\";
-var files = new DirectoryInfo(path).GetFiles("*Texture2D*");
+var path = @"D:\Downloads\Download\Snap.Static.Zip-main\";
+var oPath = @"D:\Downloads\Download\新建文件夹 (2)\";
+var files = new DirectoryInfo(path).GetFiles("*");
 
 CopyFiles(files, "Achievement", oPath + @"achievement\");
 

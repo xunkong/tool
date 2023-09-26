@@ -9,7 +9,7 @@ internal abstract class Config
 
     public static Dictionary<long, string> TextMap;
 
-    public static string GenshinDataPath = @"C:\Users\Scighost\Source\Repos\GenshinData\";
+    public static string GenshinDataPath = @"C:\Users\Scighost\OneDrive\Code\GenshinData\";
 
     public static string MySqlConnectionString = "Server=localhost;Database=xunkong;Uid=root;Pwd=mysql;";
 

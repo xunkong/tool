@@ -19,19 +19,19 @@ internal class XunkongDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<AchievementGoalModel>().ToTable("Info_Achievement_Goal");
+        modelBuilder.Entity<AchievementGoalModel>().ToTable("info_achievement_goal");
         modelBuilder.Entity<AchievementGoalModel>().Property(x => x.RewardNameCard).HasConversion(obj => JsonSerializer.Serialize(obj, _options), str => JsonSerializer.Deserialize<NameCard>(str, _options));
 
         modelBuilder.Entity<AchievementItemModel>().Ignore(x => x.IsShow);
         modelBuilder.Entity<AchievementItemModel>().Ignore(x => x.Version);
-        modelBuilder.Entity<AchievementItemModel>().ToTable("Info_Achievement_Item");
+        modelBuilder.Entity<AchievementItemModel>().ToTable("info_achievement_item");
         modelBuilder.Entity<AchievementItemModel>().Property(x => x.TriggerConfig).HasConversion(obj => JsonSerializer.Serialize(obj, _options), str => JsonSerializer.Deserialize<TriggerConfig>(str, _options));
 
         modelBuilder.Entity<Reward>().ToTable("info_reward");
         modelBuilder.Entity<Reward>().HasKey(x => x.RewardId);
         modelBuilder.Entity<Reward>().Property(x => x.RewardItemList).HasConversion(list => JsonSerializer.Serialize(list, _options), str => JsonSerializer.Deserialize<List<RewardItem>>(str, _options));
 
-        modelBuilder.Entity<MaterialItemModel>().ToTable("Info_Material");
+        modelBuilder.Entity<MaterialItemModel>().ToTable("info_material");
         modelBuilder.Entity<MaterialItemModel>().Ignore(x => x.PicPath);
 
         modelBuilder.Entity<CharacterInfo>().ToTable("info_character_v1");

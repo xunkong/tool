@@ -480,8 +480,8 @@ internal static class CharacterParser
         var outfits = new List<CharacterOutfit>();
         foreach (var node in node_outfit as JsonArray)
         {
-            var id = ((int)node["KKGNHHIFAMD"]);
-            var avatarId = ((int)node["PIJICPMEBIP"]);
+            var id = ((int)node["skinId"]);
+            var avatarId = ((int)node["characterId"]);
             var nameTextMapHash = ((long)node["nameTextMapHash"]);
             var descTextMapHash = ((long)node["descTextMapHash"]);
             var isDefault = ((bool)(node["isDefault"] ?? false));
@@ -495,10 +495,10 @@ internal static class CharacterParser
             };
             if (!isDefault)
             {
-                outfit.FaceIcon = $"https://file.xunkong.cc/genshin/character/{node["NGEMPNOFHLJ"]}.png";
-                outfit.Card = $"https://file.xunkong.cc/genshin/character/{node["NGEMPNOFHLJ"]}_Card.png";
+                outfit.FaceIcon = $"https://file.xunkong.cc/genshin/character/{node["frontIconName"]}.png";
+                outfit.Card = $"https://file.xunkong.cc/genshin/character/{node["frontIconName"]}_Card.png";
                 outfit.SideIcon = $"https://file.xunkong.cc/genshin/character/{node["sideIconName"]}.png";
-                outfit.GachaSplash = $"https://file.xunkong.cc/genshin/character/{node["NGEMPNOFHLJ"].ToString().Replace("AvatarIcon", "Costume")}.png";
+                outfit.GachaSplash = $"https://file.xunkong.cc/genshin/character/{node["frontIconName"].ToString().Replace("AvatarIcon", "Costume")}.png";
             }
             outfits.Add(outfit);
         }
@@ -577,7 +577,7 @@ internal static class CharacterParser
 
     public static async Task GetVoice()
     {
-        Directory.CreateDirectory("E:/a");
+        Directory.CreateDirectory("D:/E");
         var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = DecompressionMethods.All });
 
         var api = "https://api-static.mihoyo.com/common/blackboard/ys_obc/v1/home/content/list?app_sn=ys_obc&channel_id=189";
@@ -643,11 +643,11 @@ internal static class CharacterParser
             result.Add("kr", kr);
 
             var jsonresult = JsonSerializer.Serialize(result, new JsonSerializerOptions { WriteIndented = true, Encoder = System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
-            File.WriteAllText($"E:/a/{name}.json", jsonresult);
+            File.WriteAllText($"D:/E/{name}.json", jsonresult);
             Console.WriteLine(name);
         }
         using var db = new XunkongDbContext();
-        foreach (var file in Directory.EnumerateFiles("E:/a"))
+        foreach (var file in Directory.EnumerateFiles("D:/E"))
         {
             var node = JsonNode.Parse(await File.ReadAllTextAsync(file));
             var name = node["name"].ToString();
